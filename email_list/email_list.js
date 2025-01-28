@@ -1,4 +1,9 @@
 const $ = selector => document.querySelector(selector);
+
+let entryA = prompt("Enter and value", 12345.6789);
+alert(entryA);      //displays 12345.6789
+entryA = parseInt(entryA);
+alert(entryA);      //displays 12345
  
 const joinList = evt => {
     // get user entries from text boxes
