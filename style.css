@@ -1,0 +1,21 @@
+body{
+    background-color: lightcyan;
+    margin: auto;
+    text-align: center;
+}
+
+section ul{
+    padding: 0%;
+}
+
+section ul li{
+    list-style-type: none;
+    margin-bottom: 10px;
+    size: 25px;
+}
+
+section{
+    background-color: lightgray;
+    padding: 15px;
+    
+}
