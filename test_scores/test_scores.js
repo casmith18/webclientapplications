@@ -1,5 +1,6 @@
 "use strict";
 
+//ORIGINAL VERSION
 /*// initialize total variable
 let total = 0;
 
@@ -26,7 +27,7 @@ document.write(html);
 
 //FOR IN VERSION
 // declare and initialize an array to hold test scores from user
-const scores = [];
+/*const scores = [];
  
 // use do-while loop to get scores from the user and store in array
 let score = 0;
@@ -56,4 +57,35 @@ if (scores.length > 0) {
     const average = parseInt(total/scores.length);
     document.write(`<p>Average score is ${average}</p>`);
 }
+*/
 
+// FOR OF VERSION
+const scores = [];
+
+
+let score = 0;
+do {
+    score = parseInt(prompt(
+        "Enter a test score, or enter -1 to end scores", -1));
+    if (score >= 0 && score <= 100) {
+        scores[scores.length] = score;
+    }
+    else if (score != -1){
+        alert("Score must be a valid number from 0 through 100");
+    }
+}
+while(score != -1);
+
+if (scores.length > 0) {
+    let total = 0;
+    let index = 1;
+    for (let score of scores) {
+        total = total + score;
+        document.write(
+            `<p>Score ${index}: ${score}</p>`);
+        index++;
+    }
+    // calculate and display the average
+    const average = parseInt(total / scores.length);
+    document.write(`<p>Average score is ${average}</p>`);
+}
