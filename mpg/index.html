@@ -9,26 +9,58 @@
 <body>
     <main>
         <h1>The Miles Per Gallon Calculator</h1>
+        <label for="miles">Miles Driven:</label>
+        <input type="text" id="miles">
+        <br>
+        <label for="gallons">Gallons Used:</label>
+        <input type="text" id="gallons">
+        <br>
+        <input type="button" id="calculate" value="Calculate MPG">
+        <input type="button" id="clear" value="Clear Entries">
+        <p id="results"></p>
         <script>
             "use strict";
             
-            // get miles driven from user
-            const miles = parseFloat(prompt("Enter miles driven"));
+            const $ = (id) => document.getElementById(id);
             
-
-            // get gallons used from user
-            const gallons = parseFloat(prompt("Enter gallons of gas used"));
+            const calculate = function() {
+                let miles = parseFloat($("miles").value);
+                let gallons = parseFloat($("gallons").value);
+                let errorMsg = "";
+                
+                if (isNaN(miles)) {
+                    errorMsg = "Miles must be numeric";
+                } else if (miles <= 0) {
+                    errorMsg = "Miles must be greater than zero";
+                } else if (isNaN(gallons)) {
+                    errorMsg = "Gallons must be numeric";
+                } else if (gallons <= 0) {
+                    errorMsg = "Gallons must be greater than zero";
+                }
+                
+                if (errorMsg) {
+                    alert(errorMsg);
+                } else {
+                    let mpg = miles / gallons;
+                    $("results").innerHTML = `<p><label>Miles: </label>${miles.toFixed(2)}</p>
+                        <p><label>Gallons: </label>${gallons.toFixed(2)}</p>
+                        <p><label>MPG: </label>${mpg.toFixed(2)}</p>`;
+                }
+            };
             
-
-            // calculate mpg
-            const mpg = parseFloat(miles/gallons);
-
-            // display results
-            const html = `<p><label>Miles: </label>${miles.toFixed(2)}</p>
-                <p><label>Gallons: </label>${gallons.toFixed(2)}</p>
-                <p><label>MPG: </label>${mpg.toFixed(2)}</p>`;
-            document.write(html);
+            const clear = function() {
+                $("miles").value = "";
+                $("gallons").value = "";
+                $("results").innerHTML = "";
+            };
+            
+            window.onload = function() {
+                $("calculate").onclick = calculate;
+                $("clear").onclick = clear;
+                $("miles").ondblclick = clear;
+            };
         </script>    
     </main>
 </body>
 </html>
+
