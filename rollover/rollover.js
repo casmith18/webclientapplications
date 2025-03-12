@@ -1,26 +1,33 @@
 "use strict";
-$(document).ready(() => {
 
-    // process each img tag
-    $("#image_rollovers img").each( (index, img) => {
-        const oldURL = img.src;      // gets the src attribute
-        const newURL = img.id;       // gets the id attribute
+const $ = selector => document.querySelector(selector);
 
-        // preload rollover image		
-        const rolloverImage = new Image();
-        rolloverImage.src = newURL;
+document.addEventListener("DOMContentLoaded", () => {
+    var image1 = $("#image1");
+    var image2 = $("#image2");
 
-        // set up event handlers for changing images
-        $(img).mouseover( () => img.src = newURL );
-        $(img).mouseout( () => img.src = oldURL);
+ 
+    var links = $("#image_list").querySelectorAll("a");
+    var images = [];
 
-        // set up event handlers for hovering over an image
-        // $(img).hover(   // use jQuery syntax to access hover() method
-        //     () => img.src = newURL,  // hover over
-        //     () => img.src = oldURL   // hover out
-        // ); 
+    for (let link of links) {
+        let img = new Image();
+        img.src = link.href;
+        images.push(img);
+    }
 
-    });
     
+    image1.addEventListener("mouseover", () => {
+        image1.src = "images/release.jpg";
+    });
+    image1.addEventListener("mouseout", () => {
+        image1.src = "images/hero.jpg";
+    });
 
+    image2.addEventListener("mouseover", () => {
+        image2.src = "images/deer.jpg";
+    });
+    image2.addEventListener("mouseout", () => {
+        image2.src = "images/bison.jpg";
+    });
 });
