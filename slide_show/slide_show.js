@@ -1,50 +1,23 @@
 "use strict";
-
-const $ = selector => document.querySelector(selector);
-
-const imageCache = [];
-let imageCounter = 0;
-let timer = null;
-let image = null;
-
-const mainImage = $("#main_image");   
-const caption = $("#caption");        
-
-const runSlideShow = function() {
-    imageCounter = (imageCounter + 1) % imageCache.length;
-    image = imageCache[imageCounter];
-    mainImage.src = image.src;
-    mainImage.alt = image.alt;
-    caption.textContent = image.alt;
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-    const links = $("#image_list").querySelectorAll("a");
-
-   
-    for (let link of links) {
-        image = new Image();
-        image.src = link.href;
-        image.alt = link.title;
-        imageCache.push(image);
-    }
-
- 
-    $("#start").addEventListener("click", () => {
-        runSlideShow(); 
-        timer = setInterval(runSlideShow, 2000); 
-
-       
-        $("#start").disabled = true;
-        $("#pause").disabled = false;
-    });
-
- 
-    $("#pause").addEventListener("click", () => {
-        clearInterval(timer); 
-
-      
-        $("#start").disabled = false;
-        $("#pause").disabled = true;
-    });
+$(document).ready( () => {
+    let nextSlide = $("#slides img:first-child");
+        
+    // start slide show
+    setInterval( () => {   
+        $("#caption").fadeOut(1000);
+        $("#slide").fadeOut(1000,
+            () => {
+                if (nextSlide.next().length == 0) {
+                    nextSlide = $("#slides img:first-child");
+                }
+                else {
+                    nextSlide = nextSlide.next();
+                }
+                const nextSlideSource = nextSlide.attr("src");
+                const nextCaption = nextSlide.attr("alt");
+                $("#slide").attr("src", nextSlideSource).fadeIn(1000);                    
+                $("#caption").text(nextCaption).fadeIn(1000);
+            });    // end fadeOut()
+    },
+    3000);         // end setInterval()
 });
