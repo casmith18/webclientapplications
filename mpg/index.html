@@ -9,58 +9,28 @@
 <body>
     <main>
         <h1>The Miles Per Gallon Calculator</h1>
-        <label for="miles">Miles Driven:</label>
-        <input type="text" id="miles">
-        <br>
-        <label for="gallons">Gallons Used:</label>
-        <input type="text" id="gallons">
-        <br>
-        <input type="button" id="calculate" value="Calculate MPG">
-        <input type="button" id="clear" value="Clear Entries">
-        <p id="results"></p>
-        <script>
-            "use strict";
-            
-            const $ = (id) => document.getElementById(id);
-            
-            const calculate = function() {
-                let miles = parseFloat($("miles").value);
-                let gallons = parseFloat($("gallons").value);
-                let errorMsg = "";
-                
-                if (isNaN(miles)) {
-                    errorMsg = "Miles must be numeric";
-                } else if (miles <= 0) {
-                    errorMsg = "Miles must be greater than zero";
-                } else if (isNaN(gallons)) {
-                    errorMsg = "Gallons must be numeric";
-                } else if (gallons <= 0) {
-                    errorMsg = "Gallons must be greater than zero";
-                }
-                
-                if (errorMsg) {
-                    alert(errorMsg);
-                } else {
-                    let mpg = miles / gallons;
-                    $("results").innerHTML = `<p><label>Miles: </label>${miles.toFixed(2)}</p>
-                        <p><label>Gallons: </label>${gallons.toFixed(2)}</p>
-                        <p><label>MPG: </label>${mpg.toFixed(2)}</p>`;
-                }
-            };
-            
-            const clear = function() {
-                $("miles").value = "";
-                $("gallons").value = "";
-                $("results").innerHTML = "";
-            };
-            
-            window.onload = function() {
-                $("calculate").onclick = calculate;
-                $("clear").onclick = clear;
-                $("miles").ondblclick = clear;
-            };
-        </script>    
+        <div>
+            <label for="miles">Miles Driven:</label>
+            <input type="text" id="miles">
+        </div>
+        <div>
+            <label for="gallons">Gallons of Gas Used:</label>
+            <input type="text" id="gallons">
+        </div>
+        <div>
+            <label for="mpg">Miles Per Gallon:</label>
+            <input type="text" id="mpg" disabled>
+        </div>
+        <div>
+            <label>&nbsp;</label>
+            <input type="button" id="calculate" value="Calculate MPG">
+        </div>
+        <div>
+            <label>&nbsp;</label>
+            <input type="button" id="clear" value="Clear Entries">
+        </div>
     </main>
+    <script src="mpg.js"></script>   
 </body>
-</html>
 
+</html>

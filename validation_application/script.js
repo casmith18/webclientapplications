@@ -1,9 +1,7 @@
 "use strict";
 $(document).ready(() => {
-  // move focus to first text box
   $("#email").focus();
 
-  // the handler for the change event of the radio buttons
   $(":radio").change(() => {
     const radioButton = $(":radio:checked").val();
     if (radioButton == "corporate") {
@@ -14,11 +12,10 @@ $(document).ready(() => {
       $("#company_name").next().text("");
     }
   });
-  // the handler for the click event of the submit button
+ 
   $("#member_form").submit((event) => {
     let isValid = true;
 
-    // validate the email entry with a regular expression
     const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/;
     const email = $("#email").val().trim();
     if (email == "") {
@@ -31,7 +28,7 @@ $(document).ready(() => {
       $("#email").next().text("");
     }
     $("#email").val(email);
-    // validate the password entry
+ 
     const password = $("#password").val().trim();
     if (password.length < 6) {
       $("#password").next().text("Must be 6 or more characters.");
@@ -41,9 +38,6 @@ $(document).ready(() => {
     }
     $("#password").val(password);
 
-    // validate the verify password entry (not shown here)
-
-    // validate the company name entry
     if (!$("#company_name").attr("disabled")) {
       const companyName = $("#company_name").val().trim();
       if (companyName == "") {
@@ -55,12 +49,8 @@ $(document).ready(() => {
       $("#company_name").val(companyName);
     }
 
-    // validate other text boxes (not shown here)
-
-    // prevent the submission of the form if any entries
-    // are invalid
     if (isValid == false) {
       event.preventDefault();
     }
   });
-}); // end ready() handler
+}); 
