@@ -2,14 +2,13 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: white;
     margin: 0 auto;
-    width: 670px;
+    width: 675px;
     border: 3px solid blue;
     padding: 0 2em 1em;
 }
 h1 {
     color: blue;
 }
-
 div {
     margin-bottom: 1em;
 }

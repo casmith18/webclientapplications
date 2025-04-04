@@ -76,3 +76,22 @@ if (isValid == false) {
 
 }); // end ready() handler
 
+
+
+
+/* EXERCISES FOR 4-3-25
+
+let number = NaN; 
+
+while (isNaN(number) || number < 1 || number > 10) {
+    number = parseInt(prompt("Enter a number from 1 to 10."));
+    if (isNaN(number) || number < 1 || number > 10) {
+        alert("Invalid entry. Try again.");
+    }
+}
+
+alert(number);
+
+*/ 
+
+// 4-3-25 next assignment 12-1
