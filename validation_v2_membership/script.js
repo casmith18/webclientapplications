@@ -95,3 +95,5 @@ alert(number);
 */ 
 
 // 4-3-25 next assignment 12-1
+
+//INVOICE APPLICATION for the example 
